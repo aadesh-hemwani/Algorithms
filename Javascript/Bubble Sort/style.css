@@ -1,0 +1,15 @@
+.block{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    font-family: monospace;
+    left: 100;
+    bottom: 100;
+    transition: 0.3s all ease-in;
+    
+}

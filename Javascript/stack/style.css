@@ -1,0 +1,99 @@
+.block{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 50px;
+    bottom: 10px;
+    border: 4px solid black;
+    border-radius: 4px;
+    background-color: rgb(121, 174, 245);
+    font-size: 2rem;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.pushAnimate{
+    animation: push 1s linear;
+}
+.popAnimate{
+    animation: pop 1s linear;
+}
+
+@keyframes push {
+    0%{
+        top: 0vh;
+    }
+    20%{
+        top: 20vh;
+    }
+    40%{
+        top: 40vh;
+    }
+    60%{
+        top: 60vh;
+    }
+    80%{
+        top: 80vh;
+    }
+    100%{
+        bottom: 10px;
+    }
+}
+@keyframes pop {
+    0%{
+        top: 80vh;
+        background-color: rgba(255, 104, 77, 0.9);;
+    }
+    20%{
+        top: 80vh;
+        background-color: rgba(255, 104, 0, 0.7);;
+    }
+    40%{
+        top: 60vh;
+        background-color: rgba(255, 104, 0, 0.6);;
+    }
+    60%{
+        top: 40vh;
+        background-color: rgba(255, 104, 0, 0.4);
+    }
+    80%{
+        top: 20vh;
+        background-color: rgba(255, 104, 0, 0.2);
+    }
+    100%{
+        top: 0vh;
+        background-color: rgba(255, 104, 0, 0.1);
+    }
+}
+#canvas{
+    position: relative;
+    width: 90vw;
+    height: 90vh;
+    margin:45px auto;
+    border-bottom: 2px solid black;
+}
+.stackBox{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-9px);
+    bottom: 0;
+    width: 118px;
+    border-bottom: 8px solid black;
+    border-left: 8px solid black;
+    border-right: 8px solid black;
+    border-radius: 8px;
+}
+
+.logo{
+    font-size: 4rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+.menu{
+    font-size: 10px;
+    position: absolute;
+    top: 50px;
+    padding: 15px;
+    height: 20vh;
+    width: 40vw;
+}

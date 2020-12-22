@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+body{
+    padding: 2rem;
+}
+#canvas{
+    position: relative;
+    margin: 0 auto;
+}
+table{
+    border-collapse: collapse;
+    color: -internal-quirk-inherit;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+.block{
+    width: 10px;
+    height: 10px;
+    /* border: 2px solid black; */
+    font-size: 0.8rem; 
+    font-weight: 600;
+    background-color: white;
+    text-align: center;
+}
+.block:hover{
+    background-color: rgb(209, 209, 209);
+}
+.block:focus{
+    animation: createWall 0.5s ease-out;
+}
+.start, .matrix-btn{
+    padding: 1rem;
+    font-size: 2rem;
+    border: none;
+    background-color: rgb(153, 250, 185);
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgb(160, 160, 160);
+    margin-top: 2.5rem;
+    margin-left: 0.5rem;
+    
+    transition: 0.2s;
+}
+.start:hover, .matrix-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px rgb(177, 177, 177);
+}
+.start:focus, .matrix-btn:focus{
+    outline: none;   
+}
+.createWall{
+    animation: createWall 0.5s ease-out;
+}
+.breakWall{
+    animation: breakWall 0.5s reverse;
+}        
+@keyframes createWall {
+    0% {
+        transform: scale(.3);
+        background-color: rgb(12, 53, 71);
+    }
+    50% {
+        transform: scale(1.2);
+        background-color: rgb(12, 53, 71);
+    }
+    100% {
+        transform: scale(1.0);
+        background-color: rgb(12, 53, 71);
+    }                    
+}
+@keyframes breakWall {
+    0% {
+        transform: scale(.3);
+        background-color: rgb(12, 53, 71);
+    }
+
+    50% {
+        transform: scale(1.2);
+        background-color: rgb(12, 53, 71);
+    }
+    100% {
+        transform: scale(1.0);
+        background-color: rgb(12, 53, 71);
+    }                    
+}
+p{
+    font-size: 1.5rem;
+}
+#rows, #columns, #algorithm{
+    padding: 5px;
+    width: 65px;
+    text-align: start;
+    border-radius: 6px;
+    border: none;
+    border: 5px solid black;
+    font-size: 1.5rem;
+}
+#algorithm{
+    width: max-content;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.matrix-btn{
+    padding: 8px;
+    border-radius: 6px;
+    border: none;            
+    font-size: 1.5rem;
+    background-color: rgb(153, 250, 185);
+    box-shadow: 0 5px 10px rgb(160, 160, 160);
+}
+
+option { 
+    font-size:1.5rem;
+}

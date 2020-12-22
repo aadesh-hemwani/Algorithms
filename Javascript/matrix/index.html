@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <table id="canvas"></table>
+    <p><input type="number" placeholder="Rows" id="rows" value="25">
+         <b>X</b> 
+        <input type="number" placeholder="Columns" id="columns" value="25">
+        <input type="button" class="matrix-btn" id="createMatrix" value="Create Matrix">    
+    </p>
+    <select id="algorithm">
+        <option value="bfs">Breath First</option>
+        <option value="dfs">Depth First</option>
+    </select>
+    <input type="button" id="start" class="start" value="start">
+    <input type="button" id="reset" class="start" value="reset">
+</body>
+</html>
