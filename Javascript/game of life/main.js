@@ -1,0 +1,117 @@
+const canvas = document.querySelector("#canvas")
+let blocks = [];
+let cursor = document.querySelector("#cursor");
+let rows = Math.floor((window.innerHeight)/15);
+let cols = Math.floor((window.innerWidth)/15);
+let alive = "white";
+let dead = "rgb(36, 58, 66)";
+let wallAnimation = [{
+    transform: "scale(.3)",
+    backgroundColor: `${dead}`,
+},
+{
+    transform: "scale(1.2)",
+    backgroundColor: "rgb(180, 180, 180)",
+},
+{
+    transform: "scale(1.0)",
+    backgroundColor: `${alive}`
+}];
+
+let directions = [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, 1], [-1, -1], [1, 1], [1, -1]];
+
+function buildMatrix(){
+    console.log(screen.width, screen.height)
+    for(let i=0; i<rows; ++i){
+        let tr = document.createElement("tr");
+        tr.classList.add("row");
+        for(let j=0; j<cols; ++j){
+            let td = document.createElement("td");
+            td.classList.add("block");
+            tr.appendChild(td);    
+        }
+        canvas.appendChild(tr);
+    }
+    blocks = document.querySelectorAll(".row");
+}
+function makeWall(cBlock){
+    cBlock.animate(wallAnimation, 500);
+    cBlock.style.backgroundColor = alive;
+}
+
+function breakWall(cBlock){
+    cBlock.animate(wallAnimation, {duration: 500, direction:"reverse"});
+    cBlock.style.backgroundColor = dead;
+}
+
+function buildWall(node){
+    if(node.style.backgroundColor === alive){
+        breakWall(node);
+    }else{
+        makeWall(node);
+    }
+}
+
+async function randomMaze(){
+    for(let i=0; i<rows; ++i){
+        await delay(50)
+        for(let j=0; j<cols; ++j){
+            let make_wall = Math.floor((Math.random() * 3)+1);
+            if(make_wall === 1){
+                makeWall(blocks[i].childNodes[j]);
+            }
+        }
+    }
+}
+
+async function gameOfLife(){
+    let liveNeighbours = [];
+    for(let i=0; i<rows; ++i){
+        let row = [];
+        for(let j=0; j<cols; ++j){
+            let live = 0;
+            for(let d=0; d<8; ++d){
+                if(i+directions[d][0] >= 0 && i+directions[d][0] < rows && j+directions[d][1] >= 0 && j+directions[d][1] < cols && blocks[i+directions[d][0]].childNodes[j+directions[d][1]].style.backgroundColor === alive){
+                    live += 1; 
+                }
+            }
+            row.push(live)
+        }
+        liveNeighbours.push(row)
+    }
+
+    for(let i=0; i<rows; ++i){
+        for(let j=0; j<cols; ++j){
+            let lv = liveNeighbours[i][j];
+            if(blocks[i].childNodes[j].style.backgroundColor === alive){
+                if(lv < 2 || lv > 3){
+                    
+                    blocks[i].childNodes[j].style.backgroundColor = dead;
+                }
+            }
+            else{
+                if(lv === 3){
+                    
+                    blocks[i].childNodes[j].style.backgroundColor = alive;
+                }
+            }
+        }
+    }
+    await delay(70);
+}
+        
+async function delay(time){
+    await new Promise(resolve =>{
+        setTimeout(()=> resolve(), time);
+    });
+}
+
+async function run(){
+    await randomMaze();
+    while(true){
+        await gameOfLife();
+    }
+}
+
+buildMatrix();
+run();

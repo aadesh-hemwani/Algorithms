@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="main.js" defer></script>
+    <style>
+        *{
+            user-select: none;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-size: 10px;
+            background-color: rgb(231, 231, 231);
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        table{
+            background-color: white;
+            border-collapse: collapse;
+            border: 2.5px solid black;
+        }
+        .cell{
+            font-size: 20px;
+            font-weight: 900;
+            width: 50px;
+            height: 50px;
+            border: 0.1px solid black;
+            text-align: center;
+            
+        }
+
+        @media (max-width: 400px) {
+            .cell{
+                width: 35px;
+                height: 35px;
+            }
+        }
+        .start, .visualize, .reset, .newBoard{
+            cursor: pointer;
+            padding: 0.6rem;
+            font-size: .8rem;
+            border: none;
+            font-weight: 600;
+            color: white;
+            background-color: rgb(67, 182, 111);
+            border-radius: 6px;
+            box-shadow: 0 5px 5px rgb(160, 160, 160);
+            margin-top: 2.5rem;
+            margin-left: 0.5rem;
+            transition: 0.2s;
+        }
+        .start:hover, .visualize:hover, .reset:hover, .newBoard:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 1rem 1.5rem rgb(177, 177, 177);
+        }
+        .start:focus, .visualize:focus, .reset:focus, .newBoard:focus{
+            outline: none;   
+        }
+        .start:active, .visualize:active, .reset:active, .newBoard:active{
+            transform: translateY(2px);
+            box-shadow: 0 5px 5px rgb(160, 160, 160);
+        }
+        .reset, .newBoard{
+            background-color: rgb(66, 130, 242);
+        }
+        .main{
+            padding: 0 5px;
+            height: 95vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <table class="canvas"></table>
+        <div class="controls">
+            <input type="button" class="visualize" value="Visualization On">
+            <button class="start">Start</button>
+            <button class="reset">Clear</button>
+            <button class="newBoard">New Board</button>
+            
+        </div>
+    </div>
+</body>
+</html>
