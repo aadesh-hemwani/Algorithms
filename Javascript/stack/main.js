@@ -1,6 +1,6 @@
 let count = 0;
 let canvas = document.getElementById("canvas");
-let height = screen.height - 150;
+let height = screen.height - 180;
 let totalBlocks = Math.floor(height/50);
 let stackBox = document.getElementById("stackBox");
 stackBox.style.height = `${55*totalBlocks}px`
