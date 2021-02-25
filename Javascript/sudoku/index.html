@@ -29,8 +29,8 @@
             height: 50px;
             border: 0.1px solid black;
             text-align: center;
-            
         }
+
 
         @media (max-width: 400px) {
             .cell{
@@ -70,21 +70,63 @@
             padding: 0 5px;
             height: 95vh;
             display: flex;
+            margin-top: 20px;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
+
+        .select{
+            padding: 0.3rem;
+            width: fit-content;
+            text-align: start;
+            border-radius: 6px;
+            border: none;
+            border: 5px solid black;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+        .sec-2{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        option { 
+            font-size:1rem;
+        }
+        .controls{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        label{
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
     </style>
 </head>
 <body>
     <div class="main">
         <table class="canvas"></table>
         <div class="controls">
-            <input type="button" class="visualize" value="Visualization On">
-            <button class="start">Start</button>
-            <button class="reset">Clear</button>
-            <button class="newBoard">New Board</button>
-            
+            <div class="sec-1">
+                <input type="button" class="visualize" value="Visualization On">
+                <button class="start">Start</button>
+                <button class="reset">Clear</button>
+                <button class="newBoard">New Board</button>
+            </div>
+            <div class="sec-2">
+                <label for="select">Level: </label>
+                <select class="select">
+                    <option value="0">Beginner</option>
+                    <option value="1">Intermediate</option>
+                    <option value="2">Pro</option>
+                </select>
+            </div>     
         </div>
     </div>
 </body>

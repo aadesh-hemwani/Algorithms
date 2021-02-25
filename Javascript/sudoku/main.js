@@ -5,6 +5,7 @@ class Sudoku {
         this.resetBtn = document.querySelector(".reset");
         this.visulatizeToggle = document.querySelector(".visualize");
         this.newBoard = document.querySelector(".newBoard");
+        this.level = document.querySelector(".select");
         this.visualize = true;
         this.cells = [];
         this.fixedNumColor = `rgb(220, 220, 220)`;
@@ -16,7 +17,7 @@ class Sudoku {
         this.resetBtn.onclick = this.reset.bind(this);
         this.startBtn.onclick = this.startSolving.bind(this);
         this.newBoard.onclick = this.generateNewBoard.bind(this);
-        
+        this.level.onchange = this.changeLevel.bind(this);    
         this.visulatizeToggle.onclick = (()=>{
             this.visualize = !this.visualize;
             if(this.visualize){
@@ -29,6 +30,10 @@ class Sudoku {
             }
         }).bind(this);
         this.createMatrix();
+    }
+
+    changeLevel(){
+        this.generateNewBoard(parseInt(this.level.value));
     }
 
     toggelBtns(){
@@ -49,6 +54,7 @@ class Sudoku {
         this.visulatizeToggle.disabled = !this.btns;
         this.newBoard.disabled = !this.btns;
         this.btns = !this.btns;
+        this.level.disabled = this.btns;
     }
 
     async startSolving() {
@@ -118,10 +124,10 @@ class Sudoku {
                 cell.innerHTML = "";
             }
         }        
-        this.generateSudoku();
+        this.generateSudoku(parseInt(this.level.value));
     }
 
-    validNum(num, row, col) {
+    validNum(num, row, col) {      
         // check row 
         for (let i = 0; i < this.N; ++i) {
             let val = parseInt(this.cells[row].childNodes[i].innerHTML);
@@ -153,9 +159,19 @@ class Sudoku {
         return true;
     }
 
-    async generateSudoku() {
+    async generateSudoku(level=0) {
+        let clues;
+        if(level === 0){
+            clues = 35
+        }
+        else if(level === 1){
+            clues = 30
+        }
+        else{
+            clues = 20
+        }
         let visited = new Set();
-        while (visited.size !== 5) {
+        while (visited.size !== 10) {
             let row = Math.floor((Math.random() * this.N - 1) + 1);
             let col = Math.floor((Math.random() * this.N - 1) + 1);
             let num = Math.floor((Math.random() * this.N - 1) + 2);
@@ -168,7 +184,7 @@ class Sudoku {
         let visualBtnPrevState = this.visualize;
         this.visualize = false;
         await this.solveSudoku(0, 0);
-        while (visited.size !== 17) {
+        while (visited.size !== clues) {
             let row = Math.floor((Math.random() * this.N - 1) + 1);
             let col = Math.floor((Math.random() * this.N - 1) + 1);
             if (!(visited.has(this.cells[row].childNodes[col]))) {
@@ -201,14 +217,14 @@ class Sudoku {
             row++;
             col = 0;
         }
-        this.visualize ? await this.delay(40) : null;
+        this.visualize ? await this.delay(50) : null;
         if (this.cells[row].childNodes[col].innerHTML === "") {
             for (let i = 1; i <= this.N; ++i) {
                 if (this.validNum(i, row, col)) {
                     this.cells[row].childNodes[col].style.backgroundColor = `rgba(94, 150, 255, 0.3)`;
                     this.cells[row].childNodes[col].innerHTML = `${i}`;
                     if (await this.solveSudoku(row, col + 1)) {
-                        this.visualize ? await this.delay(40) : null;
+                        this.visualize ? await this.delay(25) : null;
                         this.cells[row].childNodes[col].style.backgroundColor = "white";
                         return true;
                     }
