@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tic Tac Toe</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="main.js" defer></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font-family: "Quicksand", sans-serif;
+				user-select: none;
+			}
+			body {
+				position: relative;
+				display: grid;
+			}
+			.canvas {
+				transform: translateY(30px);
+				width: 600px;
+				height: 600px;
+				max-height: 100%;
+				margin: 0 auto;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+			}
+
+			.line1,
+			.line2 {
+				position: absolute;
+				width: 600px;
+				height: 8px;
+				background-color: #cac7c7;
+				top: 35%;
+				border-radius: 50px;
+			}
+			.line2 {
+				top: 65%;
+			}
+			.line3,
+			.line4 {
+				border-radius: 50px;
+				position: absolute;
+				height: 600px;
+				width: 8px;
+				background-color: #cac7c7;
+				left: 35%;
+			}
+			.line4 {
+				left: 65%;
+			}
+			.touch {
+				display: flex;
+				flex-direction: column;
+			}
+			.row1,
+			.row2,
+			.row3 {
+				display: flex;
+				flex-direction: row;
+			}
+			.btn {
+				width: 201px;
+				background-color: transparent;
+				height: 200px;
+				border: none;
+				font-weight: 700;
+				font-size: 8em;
+				opacity: 100;
+			}
+			.control {
+				display: flex;
+				width: fit-content;
+				flex-direction: column;
+				align-items: center;
+				position: absolute;
+				top: 20%;
+				right: 100px;
+			}
+			.reset {
+				padding: 10px 30px;
+				border: none;
+				background-color: rgb(23, 136, 211);
+				font-size: 1.5rem;
+				color: white;
+				font-weight: 500;
+				border-radius: 6px;
+				box-shadow: 0 5px 20px gray;
+				margin: 10px 40px;
+				transition: 0.2s;
+			}
+
+			.reset:hover {
+				background-color: rgb(21, 109, 167);
+			}
+			.reset:active {
+				transform: translateY(2px);
+				box-shadow: 0 3px 10px rgb(97, 97, 97);
+			}
+			.msg {
+				font-size: 3rem;
+			}
+			.details {
+				position: absolute;
+				top: 25%;
+				left: 80px;
+				font-size: 4rem;
+				font-weight: 700;
+				text-align: center;
+				line-height: 0.9;
+			}
+			.XScore {
+				color: #3887d0;
+			}
+			.OScore {
+				color: #67cada;
+			}
+			.drawScore {
+				color: gray;
+			}
+			.wins {
+				font-size: 2rem;
+				font-weight: 500;
+			}
+
+			@media only screen and (max-width: 1050px) {
+				.line1,
+				.line2 {
+					width: 90%;
+				}
+
+				.details {
+					top: 120%;
+				}
+				.control {
+					top: 120%;
+					left: 90%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="canvas">
+			<div class="line1"></div>
+			<div class="line2"></div>
+			<div class="line3"></div>
+			<div class="line4"></div>
+
+			<div class="touch">
+				<div class="row1">
+					<button class="btn one"></button>
+					<button class="btn two"></button>
+					<button class="btn three"></button>
+				</div>
+				<div class="row2">
+					<button class="btn four"></button>
+					<button class="btn five"></button>
+					<button class="btn six"></button>
+				</div>
+				<div class="row3">
+					<button class="btn seven"></button>
+					<button class="btn eight"></button>
+					<button class="btn nine"></button>
+				</div>
+			</div>
+		</div>
+		<div class="details">
+			<div class="XScore">
+				X <br />
+				<div class="wins Xwin">0 Wins</div>
+				<br />
+			</div>
+			<div class="OScore">
+				O <br />
+				<div class="wins Owin">0 Wins</div>
+				<br />
+			</div>
+			<div class="drawScore">
+				# <br />
+				<div class="wins Dwin">0 Draws</div>
+			</div>
+		</div>
+
+		<div class="control">
+			<button class="reset">Reset</button>
+			<div class="msg"></div>
+		</div>
+	</body>
+</html>
